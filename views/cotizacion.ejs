@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href = "css/css.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Cotización</title>
+</head>
+<body>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-auto">
+                <img src="https://1000marcas.net/wp-content/uploads/2019/12/Toyota-logo-600x377.png" width="250" height="150">
+                <h1>Toyota Mazatlán</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-auto">
+                <form id= "cotizacion" action="/cotizacion" method="POST">
+                    <br><label for="folio">Numero de folio:</label>
+                    <input type="number" id="folio" name="folio" value="<%=folio%>" required>
+                    <label for="desc">Descripcion del automovil: </label>
+                    <input type="text" id="desc" name="desc" value="<%=desc%>" required><br>
+                <div class="col-md-auto">
+                    <br><label for="precio">Precio:</label>
+                    <input type="number" id="precio" name="precio" value="<%=precio%>" required>
+                    <label for="por">Porcentaje Inicial:</label>
+                    <input type="text" id="pginicial" name="pginicial" value ="<%=pginicial%>" required>
+                    <label for="plazos">Plazos</label>
+                    <input type="number" id="plazos" name="plazos" value ="<%=plazos%>" required>
+                </div><br>
+                <div class="col-md-auto">
+                    <input class="btn-default" type="submit" value="Calcular">
+                    <input class="btn-default" type="reset" value="Limpiar" onclick="reset()">
+                </div>
+                <br>
+                </form>
+            </div>
+        </div>
+        <%
+            if(precio != null){
+                var pinicial = precio*(pginicial/100);
+                var totalf = precio - pinicial;
+                var pmensual = totalf/plazos;
+            }
+        %>
+            <h5>Pago Inicial: $ <%=pinicial%></h5>
+            <h5>Total a Financiar: $ <%=totalf%></h5>
+            <h5>Pago Mensual: $ <%=pmensual%></h5>
+        %>
+        <script>
+            function reset() {
+                document.getElementById("folio").reset();
+                document.getElementById("desc").reset();
+                document.getElementById("precio").reset();
+                document.getElementById("pginicial").reset();
+                document.getElementById("plazos").reset();
+            }
+        </script>
+    </main>
+</body>
+</html>

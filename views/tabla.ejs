@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de multiplicar</title>
+</head>
+<body>
+    <h1>Tabla de Multiplicar</h1>
+    <form action="/tabla" method="POST">
+       Tabla <input type="number" required id ="numero" name="numero" value="<%=numero%>">
+        <button type="submit">Envia</button>
+    </form>
+    <%
+    let res=0
+    if(numero!=null){
+        for(con = 1;con <= 10; ++con){
+            res=con*numero;
+            %>
+            <h3><%=numero%> * <%=con%> = <%=res%></h3>
+        <% }
+    }%>
+</body>
+</html>
